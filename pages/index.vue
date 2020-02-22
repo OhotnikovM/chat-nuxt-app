@@ -9,6 +9,10 @@
       sm8
       md6
     >
+    <v-btn @click="message">
+      NEW MESSAGE
+    </v-btn>
+
       
     </v-flex>
   </v-layout>
@@ -17,6 +21,18 @@
 <script>
 
 export default {
-  components: { }
+  sockets: {
+    connect() {
+      console.log('client IO connected')
+    }
+  },
+  components: { },
+  methods: {
+    message() {
+      this.$socket.emit('createMessage', {
+        text: 'FROM CLIENT'
+      })
+    }
+  }
 }
 </script>
