@@ -3,13 +3,10 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 io.on('connection', socket => {
-  
     socket.on('createMessage', data => {
-        setTimeout(() => {
             socket.emit('newMessage', {
-                text: data.text + ' SERVER'
+                text: data.text
             })
-        }, 500)
     })
 });
 
