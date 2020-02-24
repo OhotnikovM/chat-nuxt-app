@@ -1,14 +1,9 @@
 <template>
-    <v-app app dark>
+    <v-app app>
         <v-content>
             <v-container fluid>
-                <nuxt />
+                <h1>Страница не найдена</h1>
             </v-container>
         </v-content>
-</v-app>
+    </v-app>
 </template>
-
-<script>
-export default {
-}
-</script>

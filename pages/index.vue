@@ -6,8 +6,21 @@
   >
     <v-flex xs12 sm8>
     <v-card min-width="400">
+      <v-snackbar
+      v-model="snackbar"
+      top
+    >
+      {{ message }}
+      <v-btn
+        color="pink"
+        text
+        @click="snackbar = false"
+      >
+        Закрыть
+      </v-btn>
+    </v-snackbar>
       <v-card-title>
-        <h1>Chat</h1>
+        <h3>Welcome to chat, bitches!</h3>
         </v-card-title>
         <v-card-text>
           <v-form
@@ -32,7 +45,7 @@
 
             <v-btn
                 :disabled="!valid"
-                color="primary"
+                color="pink"
                 class="mr-4"
                 @click="submit"
             >
@@ -59,6 +72,8 @@ export default {
     }
   },
   data: () => ({
+      snackbar: false,
+      message: '', 
       valid: true,
       name: '',
       room: '',
@@ -71,6 +86,16 @@ export default {
         v => !!v || 'Введите название комнаты',
       ],
     }),
+    mounted() {
+      const { message } = this.$route.query;
+      if (message === 'noUser') {
+        this.message = 'Введите данные';
+      } else if (message === 'leftChat'){
+        this.message = 'Вы вышли из чата';
+      }
+
+      this.snackbar = !!this.message;
+    },
     methods: {
       ...mapMutations(['setUser']),
       submit () {
@@ -80,9 +105,15 @@ export default {
             room: this.room
           };
 
-          this.setUser(user);
-
-          this.$router.push('/chat');
+          this.$socket.emit('userJoined', user, data => {
+            if (typeof data === 'string') {
+              console.error(data);
+            } else {
+              user.id = data.userId;
+              this.setUser(user);
+              this.$router.push('/chat');
+            }
+          });
         }
       },
     },

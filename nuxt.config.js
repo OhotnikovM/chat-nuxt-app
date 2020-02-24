@@ -1,10 +1,11 @@
 const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
+  // server: {
+  //   port: "3333",
+  //   host: '0.0.0.0'
+  // },
   mode: 'universal',
-  /*
-  ** Headers of the page
-  */
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
@@ -17,36 +18,17 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
   css: [
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     { src: '@/plugins/socket', ssr: false } 
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
   buildModules: [
     '@nuxtjs/vuetify',
   ],
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
   ],
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
