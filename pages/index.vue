@@ -20,7 +20,7 @@
       </v-btn>
     </v-snackbar>
       <v-card-title>
-        <h3>Welcome to chat, bitches!</h3>
+        <h3>Welcome to chat</h3>
         </v-card-title>
         <v-card-text>
           <v-form
