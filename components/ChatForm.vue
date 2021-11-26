@@ -6,6 +6,10 @@
             @keydown.enter="send"
             outlined
           ></v-text-field>
+          <v-btn
+             @click="send"
+            elevation="2"
+          >Отправить сообщение</v-btn>
         </v-col>
 </template>
 
